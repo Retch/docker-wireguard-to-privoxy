@@ -16,9 +16,6 @@ RUN mv /etc/privoxy/default.filter.new /etc/privoxy/default.filter \
 
 VOLUME [ "/etc/wireguard" ]
 
-# CMD ls /etc/privoxy
-
 ENTRYPOINT ["entrypoint.sh"]
-#CMD ["wg-quick","up","wg0"]
 
 EXPOSE 8118

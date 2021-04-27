@@ -5,9 +5,6 @@ set -e
 CONFFILE=/etc/privoxy/config
 PIDFILE=/var/run/privoxy.pid
 
-
-# wg-quick up wg0.conf
-
 DROUTE=$(ip route | grep default | awk '{print $3}')
 HOMENET=192.168.0.0/16
 HOMENET2=10.0.0.0/8
@@ -28,4 +25,3 @@ if [ ! -f "${CONFFILE}" ]; then
 fi
 
 /usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}"
-
