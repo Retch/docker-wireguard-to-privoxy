@@ -16,12 +16,16 @@ iptables -I OUTPUT -d $HOMENET -j ACCEPT
 iptables -A OUTPUT -d $HOMENET2 -j ACCEPT
 iptables -A OUTPUT -d $HOMENET3 -j ACCEPT
 
+
 ifname=$(basename $(ls -1 /etc/wireguard/*.conf | head -1) .conf)
+
+echo "wg-quick up {$ifname} ..."
 wg-quick up /etc/wireguard/$ifname.conf
 
 if [ ! -f "${CONFFILE}" ]; then
-	echo "Configuration file ${CONFFILE} not found!"
+	echo "Privoxy configuration file ${CONFFILE} not found!"
 	exit 1
 fi
 
+echo "Starting Privoxy"
 /usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}"
