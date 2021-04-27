@@ -18,6 +18,7 @@ VOLUME [ "/etc/wireguard" ]
 
 # CMD ls /etc/privoxy
 
-ENTRYPOINT ["entrypoint.sh"]
+# ENTRYPOINT ["entrypoint.sh"]
+CMD ["wg-quick","up","/etc/wireguard/wg0"]
 
 EXPOSE 8118
