@@ -16,7 +16,7 @@ iptables -I OUTPUT -d $HOMENET -j ACCEPT
 iptables -A OUTPUT -d $HOMENET2 -j ACCEPT
 iptables -A OUTPUT -d $HOMENET3 -j ACCEPT
 
-
+sed -i 's/DNS.*/DNS = 1.1.1.1,1.0.0.1/' /etc/wireguard/*.conf
 ifname=$(basename $(ls -1 /etc/wireguard/*.conf | head -1) .conf)
 
 echo "wg-quick up {$ifname} ..."
