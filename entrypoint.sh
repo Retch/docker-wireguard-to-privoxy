@@ -32,5 +32,5 @@ fi
 echo "Regular IP: ${oldip}"
 
 echo "Starting Privoxy..."
-sleep 3 & newip=$(curl -s ifconfig.me) & echo "Wireguard IP: ${newip}"
+sleep 3 && newip=$(curl -s ifconfig.me) && echo "Wireguard IP: ${newip}" &
 /usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}"
