@@ -21,7 +21,7 @@ oldip=$(curl -s ifconfig.me)
 sed -i 's/DNS.*/DNS = 1.1.1.1,1.0.0.1/' /etc/wireguard/*.conf
 ifname=$(basename $(ls -1 /etc/wireguard/*.conf | head -1) .conf)
 
-echo "wg-quick up {$ifname} ..."
+echo "wg-quick up {$ifname}"
 wg-quick up /etc/wireguard/$ifname.conf
 
 if [ ! -f "${CONFFILE}" ]; then
@@ -32,8 +32,5 @@ fi
 echo "Regular IP: ${oldip}"
 
 echo "Starting Privoxy..."
-/usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}" &
-
-sleep 3
-newip=$(curl -s ifconfig.me)
-echo "Wireguard IP: ${newip}"
+sleep 3 & newip=$(curl -s ifconfig.me) & echo "Wireguard IP: ${newip}"
+/usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}"
