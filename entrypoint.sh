@@ -16,6 +16,8 @@ iptables -I OUTPUT -d $HOMENET -j ACCEPT
 iptables -A OUTPUT -d $HOMENET2 -j ACCEPT
 iptables -A OUTPUT -d $HOMENET3 -j ACCEPT
 
+oldip=$(curl ifconfig.me)
+
 sed -i 's/DNS.*/DNS = 1.1.1.1,1.0.0.1/' /etc/wireguard/*.conf
 ifname=$(basename $(ls -1 /etc/wireguard/*.conf | head -1) .conf)
 
@@ -27,5 +29,7 @@ if [ ! -f "${CONFFILE}" ]; then
 	exit 1
 fi
 
-echo "Starting Privoxy"
+echo "Regular IP: ${oldip}"
+
+echo "\nStarting Privoxy..."
 /usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}"

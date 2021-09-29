@@ -1,7 +1,7 @@
 
 FROM alpine:3.13
 
-RUN apk --no-cache add privoxy wireguard-tools
+RUN apk --no-cache add privoxy wireguard-tools curl
 ADD entrypoint.sh /usr/local/bin/
 ADD config /etc/privoxy/
 RUN chmod +r /etc/privoxy/config && chmod +x /usr/local/bin/entrypoint.sh
