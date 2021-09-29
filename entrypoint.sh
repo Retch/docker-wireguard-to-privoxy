@@ -32,7 +32,7 @@ fi
 echo "Regular IP: ${oldip}"
 
 echo "Starting Privoxy..."
-/usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}"
+/usr/sbin/privoxy --no-daemon --pidfile "${PIDFILE}" "${CONFFILE}" &
 
 sleep 3
 newip=$(curl -s ifconfig.me)
