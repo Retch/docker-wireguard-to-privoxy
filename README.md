@@ -1,4 +1,7 @@
 # docker-wireguard-to-privoxy
+## Prerequisites
+Wireguard Kernel module has to be installed
+https://www.wireguard.com/install/
 
 ## Run as proxy for other containers
 
