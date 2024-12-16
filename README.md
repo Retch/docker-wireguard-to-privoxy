@@ -22,7 +22,7 @@ docker run....  --network="proxynet" --env http_proxy="proxy1:8118" --env https_
 
 ## Expose proxy on local interface for other programs with compose
 Remove the 127.0.0.1 to expose the proxy on all interfaces (be careful with public interface).
-Add more containers with seperate config directories.
+Add more containers with seperate config directories. Wireguard config file should be named: wg0.conf
 
 ```
 version: '3'
@@ -48,3 +48,6 @@ services:
       retries: 2
       start_period: 10s
 ```
+
+## Enable mod if not working
+echo ip6table_filter > /etc/modules-load.d/ip6table_filter.conf
