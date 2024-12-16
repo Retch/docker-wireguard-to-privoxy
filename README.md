@@ -50,4 +50,6 @@ services:
 ```
 
 ## Enable mod if not working
+```
 echo ip6table_filter > /etc/modules-load.d/ip6table_filter.conf
+```
