@@ -25,8 +25,6 @@ Remove the 127.0.0.1 to expose the proxy on all interfaces (be careful with publ
 Add more containers with seperate config directories. Wireguard config file should be named: wg0.conf
 
 ```
-version: '3'
-
 services:
   proxy1:
     image: ghcr.io/retch/docker-wireguard-to-privoxy:main
